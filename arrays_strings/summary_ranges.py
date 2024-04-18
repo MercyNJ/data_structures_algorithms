@@ -53,6 +53,7 @@ class Solution:
                     output.append(str(start) + "->" + str(end))
                 # # Update the start and end pointers for the new range
                 start = end = nums[i]
+        # After loop, append the last range (or single number) to the output list
         if start == end:
             output.append(str(start))
         else:
