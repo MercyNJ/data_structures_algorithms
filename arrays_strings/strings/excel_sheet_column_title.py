@@ -56,3 +56,52 @@ def test_excel_column_title():
     print("All test cases passed!")
 
 test_excel_column_title()
+
+"""
+171. Excel Sheet Column Number
+Given a string columnTitle that represents the column title as appears in an Excel sheet, return its corresponding column number.
+
+For example:
+
+A -> 1
+B -> 2
+C -> 3
+...
+Z -> 26
+AA -> 27
+AB -> 28
+...
+Example 1:
+
+Input: columnTitle = "A"
+Output: 1
+
+Example 2:
+
+Input: columnTitle = "AB"
+Output: 28
+
+Example 3:
+
+Input: columnTitle = "ZY"
+Output: 701
+"""
+
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        result = 0
+        # Iterate through the characters of the string in reverse order
+        for i in range(len(columnTitle) - 1, -1, -1):
+            # Calculate the value of the current character based on its position in the alphabet
+            char_value = ord(columnTitle[i]) - ord('A') + 1
+            # Multiply the character value by 26 raised to the power of its position
+            result += char_value * (26 ** (len(columnTitle) - 1 - i))
+        return result
+
+solution = Solution()
+print(solution.titleToNumber("A"))  # Output: 1
+print(solution.titleToNumber("B"))  # Output: 2
+print(solution.titleToNumber("C"))  # Output: 3
+print(solution.titleToNumber("Z"))  # Output: 26
+print(solution.titleToNumber("AA"))  # Output: 27
+print(solution.titleToNumber("AB"))
