@@ -44,3 +44,21 @@ assert s2 == ["h", "a", "n", "n", "a", "H"], "Test Case 2 failed"
 
 print("All test cases passed successfully.")
 
+#inplace approach 2- recursion
+from typing import List
+
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        def reverse_helper(left, right):
+            if left < right:
+                # Swap characters at left and right pointers
+                s[left], s[right] = s[right], s[left]
+                # Move the pointers towards the center
+                reverse_helper(left + 1, right - 1)
+
+        # initial call
+        reverse_helper(0, len(s) - 1)
+
