@@ -32,4 +32,19 @@ class Solution:
                     if tickets[k] == 0 and i == k:
                         return count
 
+# Using Queue
+class Solution:
+    def timeRequiredToBuy(self, tickets: List[int], k: int) -> int:
+        q = deque((i, tickets[i]) for i in range(len(tickets)))
+        time = 0
 
+        while q:
+            i, ticket_count = q.popleft()
+            ticket_count -= 1
+            time += 1
+
+            if i == k and ticket_count == 0:
+                return time
+            if ticket_count > 0:
+                q.append((i, ticket_count))
+        return time
